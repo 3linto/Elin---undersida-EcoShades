@@ -1,0 +1,300 @@
+/* RESET */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+figure {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* CUSTOM PROPERTIES */
+:root {
+
+    /* Colors */
+    --color-light: #fff;
+    --color-dark: #000;
+    --color-green: #257E69;
+    --color-wood: #683C11;
+    --color-coffee: #9F7E54;
+    --color-sand: #E5D6C4;
+    --color-blue: #14142B;
+
+    /* Fonts */
+    --font-sans-1: "bebas-neue-pro", sans-serif;
+    --font-sans-2: "Inter", sans-serif;
+    --font-size: 16px;
+    --font-scale: 1.25;
+
+    --font-size-1: var(--font-size);
+    --font-size-2: calc( var(--font-size-1) * var(--font-scale) );
+    --font-size-3: calc( var(--font-size-2) * var(--font-scale) );
+    --font-size-4: calc( var(--font-size-3) * var(--font-scale) );
+    --font-size-5: calc( var(--font-size-4) * var(--font-scale) );
+    --font-size-6: calc( var(--font-size-5) * var(--font-scale) );
+    --font-size-small: calc( var(--font-size-1) / var(--font-scale) );
+    
+    --line-height: 1.5;
+
+    --padding-content: 2rem;
+
+    --section-gap: 5rem;
+    --section-gap-inner: 3.5rem;
+    --gap-content: 2rem;
+    --gap-large: 1rem;
+    --gap-small: 0.75rem;
+
+    /* Grid */
+    --inner-width: 80rem;
+    --grid-container: minmax(32px, 1fr) [inner-start] minmax(0, var(--inner-width)) [inner-end] minmax(32px, 1fr)
+}
+
+
+/* TYPOGRAPHY */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-sans-1);
+}
+
+h1 {
+    font-size: var(--font-size-6);
+}
+
+h2 {
+    font-size: var(--font-size-5);
+}
+
+h3 {
+    font-size: var(--font-size-4);
+}
+
+h4 {
+    font-size: var(--font-size-3);
+}
+
+h5 {
+    font-size: var(--font-size-2);
+}
+
+h6 {
+    font-size: var(--font-size-1);
+}
+
+p,
+a,
+li {
+    font-family: var(--font-sans-2);
+    font-size: var(--font-size-1);
+    line-height: var(--line-height);
+}
+
+a {
+    position: relative;
+    text-decoration: none;
+}
+
+/* COMPONENTS */
+.button {
+    display: inline-block;
+    border: none;
+    background: var(--color-green);
+    color: var(--color-light);
+    font-size: 1.25rem;
+    font-weight: 500;
+    font-family: var(--font-sans-1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s;
+}
+
+.button.button--big {
+    font-size: 1.5rem;
+    font-family: var(--font-sans-1);
+}
+
+.button:hover {
+    background: hsl(166, 55%, 20%);
+}
+
+/* MAIN LAYOUT */
+
+
+/* HEADER */
+.site-header {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    z-index: 99;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+    background-color: white;
+}
+
+.site-header__buttons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.site-header.menu-opened .menu {
+    display: none;
+}
+
+#menu-button,
+.favourites-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.hamburger {
+    background-color: var(--color-dark);
+    height: 3px;
+    width: 20px;
+    position: relative;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-dark);
+    left: 0;
+    top: -8px;
+    transition: top 0.2s 0.2s, transform 0.2s;
+}
+
+.hamburger::after {
+    top: 8px;
+}
+
+#menu-button.close .hamburger::before,
+#menu-button.close .hamburger::after {
+    top: 0;
+}
+
+#menu-button.close .hamburger::before {
+    transform: rotate(45deg);
+    transition: top 0.2s, transform 0.2s 0.2s;
+}
+
+#menu-button.close .hamburger::after {
+    transform: rotate(-45deg);
+    transition: top 0.2s, transform 0.2s 0.2s;
+}
+
+#menu-button.close .hamburger {
+    background-color: transparent;
+    transition: background-color 0s 0.2s;
+}
+
+
+/* LOGO */
+.logo {
+    width: 150px;
+}
+
+/* MENU */
+.menu__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 5rem;
+}
+
+.menu__link {
+    color: var(--color-dark);
+    font-family: var(--font-sans-1);
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.menu__link::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: var(--color-sand);
+    transform: scale(0);
+    transition: 0.3s ease;
+}
+
+.menu__link:hover::before {
+    transform: scale(1);
+    height: 2.5px;
+}
+
+
+
+/* Product gallery */
+.product-gallery {
+    display: grid;
+    grid-template-columns: var(--grid-container);
+    padding: var(--section-gap) 0;
+    border-bottom: 1px solid var(--color-dark);
+}
+
+.product-gallery__inner {
+    grid-column: inner;
+}
+
+.product-gallery__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: minmax(280px, 1fr); /*rädda det responsiva*/
+    gap: var(--gap-content);
+}
+
+.product-gallery__header {
+    max-width: 35rem;
+    margin: 0 auto var(--section-gap-inner) auto;
+    text-align: center;
+}
+
+.product-gallery__title {
+    font-size: var(--font-size-6);
+    margin: 0;
+}
+
+.product-gallery__products {
+    text-align: right;
+    text-transform: uppercase;
+    font-size: var(--font-size-small);
+}
+
+.product-item {
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    background-color: lightgray;
+}
+
+
+/* FOOTER */
+.footer__content .logo  {
+    display: block;
+    width: 200px;
+}
